@@ -6,7 +6,7 @@
 
 **Discover the perfect cafe workspace across India with great chai/coffee, comfortable seating, WiFi, and power outlets.**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-orange?style=for-the-badge&logo=vercel)]([https://your-demo-link.vercel.app](https://jaymondal45.github.io/ChaiSpot-Indian-Cafe-Workspace-Finder/))
+[![Live Demo](https://img.shields.io/badge/Live-Demo-orange?style=for-the-badge&logo=vercel)](https://jaymondal45.github.io/ChaiSpot-Indian-Cafe-Workspace-Finder/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/jayMondal45/ChaiSpot-Indian-Cafe-Workspace-Finder)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
@@ -35,7 +35,7 @@ ChaiSpot is a modern web platform designed to help remote workers, freelancers, 
 
 ## 🚀 Live Demo
 
-Check out the live version: **[ChaiSpot Live Demo]([https://your-demo-link.vercel.app](https://jaymondal45.github.io/ChaiSpot-Indian-Cafe-Workspace-Finder/))**
+Check out the live version: **[ChaiSpot Live Demo](https://jaymondal45.github.io/ChaiSpot-Indian-Cafe-Workspace-Finder/)**
 
 ---
 
