@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChaiSpot | Indian Cafe & Workspace Finder</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-container">
+            <div class="loader-content">
+                <div class="loader-logo">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>ChaiSpot</span>
+                </div>
+                <div class="loader-animation">
+                    <div class="chai-cup">
+                        <div class="cup">
+                            <div class="steam"></div>
+                            <div class="steam"></div>
+                            <div class="steam"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="loader-text">Finding perfect cafe workspaces...</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>ChaiSpot</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cafes">Cafes</a></li>
+                    <li><a href="#add-cafe" class="nav-cta">Add Cafe</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div id="flash-messages" class="flash-messages"></div>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">Find Your Perfect <span class="gradient-text">Indian Cafe Workspace</span></h1>
+                    <p class="hero-subtitle">Discover cafes across India with great chai/coffee, comfortable seating, WiFi, and power outlets. Perfect for remote work, studying, or meetings.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number" id="total-cafes">10</div>
+                            <div class="stat-label">Cafes Listed</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">₹50-500</div>
+                            <div class="stat-label">Avg Price</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">4.7★</div>
+                            <div class="stat-label">Avg Rating</div>
+                        </div>
+                    </div>
+                    <a href="#add-cafe" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Your Cafe
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Indian cafe interior">
+                        <div class="image-badge">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Affordable Workspace</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-cafes" id="cafes">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Indian Cafe Workspaces <span class="stats-badge" id="shown-cafes-badge">3 shown</span></h2>
+                <p class="section-subtitle">Top-rated cafes across India for productivity and comfort</p>
+
+                <form method="GET" action="#" class="search-form" id="search-form" style="margin-top: 20px;">
+                    <div style="display: flex; gap: 10px; max-width: 600px; margin: 0 auto;">
+                        <input type="text" name="location" placeholder="Search by location..." id="search-input" style="flex: 1; padding: 12px; border: 2px solid var(--border); border-radius: 8px;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="cafe-cards" id="cafe-cards">
+                <!-- Cafe cards will be dynamically loaded here -->
+            </div>
+
+            <div id="loading-cafes" class="loading-cafes" style="display: none;">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading cafes...</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-primary" id="showAllBtn">
+                    <i class="fas fa-eye"></i> See All Cafes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="add-cafe-section" id="add-cafe">
+        <div class="container">
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <h2 class="section-title">Add Your Indian Cafe</h2>
+                    <p class="section-subtitle">Help remote workers and students discover great workspace cafes across India</p>
+                </div>
+
+                <div class="form-container">
+                    <form class="cafe-form" id="cafe-form" method="POST">
+                        <div class="form-grid">
+                            <div class="form-column">
+                                <div class="form-section">
+                                    <h3 class="form-section-title">
+                                        <i class="fas fa-store"></i>
+                                        Cafe Information
+                                    </h3>
+
+                                    <div class="form-group">
+                                        <label for="cafe-name" class="form-label">
+                                            <span class="label-text">Cafe Name</span>
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-signature"></i>
+                                            <input type="text" id="cafe-name" name="cafe-name" placeholder="e.g. Chai Sutta Bar" required>
+                                        </div>
+                                        <span class="field-error" id="name-error"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="location" class="form-label">
+                                            <span class="label-text">Location</span>
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <input type="text" id="location" name="location" placeholder="e.g. Koramangala, Bangalore" required>
+                                        </div>
+                                        <span class="field-error" id="location-error"></span>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="seats" class="form-label">
+                                                <span class="label-text">Seating Capacity</span>
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-chair"></i>
+                                                <input type="number" id="seats" name="seats" min="1" max="200" placeholder="30" required>
+                                            </div>
+                                            <span class="field-error" id="seats-error"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="coffee-price" class="form-label">
+                                                <span class="label-text">Chai/Coffee Price (₹)</span>
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-rupee-sign"></i>
+                                                <input type="number" id="coffee-price" name="coffee-price" min="10" max="500" step="10" placeholder="80" required>
+                                            </div>
+                                            <span class="field-error" id="price-error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3 class="form-section-title">
+                                        <i class="fas fa-link"></i>
+                                        Media & Links
+                                    </h3>
+
+                                    <div class="form-group">
+                                        <label for="image-url" class="form-label">
+                                            <span class="label-text">Cafe Image URL</span>
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-image"></i>
+                                            <input type="url" id="image-url" name="image-url" placeholder="https://example.com/cafe-photo.jpg" required>
+                                        </div>
+                                        <div class="form-hint">Link to a good quality photo of your cafe</div>
+                                        <span class="field-error" id="image-error"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="map-url" class="form-label">
+                                            <span class="label-text">Google Maps URL</span>
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-map"></i>
+                                            <input type="url" id="map-url" name="map-url" placeholder="https://maps.google.com/?q=..." required>
+                                        </div>
+                                        <div class="form-hint">Help customers find your cafe easily</div>
+                                        <span class="field-error" id="map-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-section">
+                                    <h3 class="form-section-title">
+                                        <i class="fas fa-star"></i>
+                                        Facilities & Amenities
+                                    </h3>
+
+                                    <div class="amenities-grid">
+                                        <div class="amenity-option">
+                                            <input type="checkbox" id="has-wifi" name="has-wifi" checked>
+                                            <label for="has-wifi" class="amenity-label">
+                                                <div class="amenity-icon">
+                                                    <i class="fas fa-wifi"></i>
+                                                </div>
+                                                <div class="amenity-content">
+                                                    <div class="amenity-name">Free WiFi</div>
+                                                    <div class="amenity-desc">High-speed internet access</div>
+                                                </div>
+                                                <div class="checkmark">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="amenity-option">
+                                            <input type="checkbox" id="has-toilet" name="has-toilet" checked>
+                                            <label for="has-toilet" class="amenity-label">
+                                                <div class="amenity-icon">
+                                                    <i class="fas fa-restroom"></i>
+                                                </div>
+                                                <div class="amenity-content">
+                                                    <div class="amenity-name">Clean Restroom</div>
+                                                    <div class="amenity-desc">Customer toilet available</div>
+                                                </div>
+                                                <div class="checkmark">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="amenity-option">
+                                            <input type="checkbox" id="has-sockets" name="has-sockets">
+                                            <label for="has-sockets" class="amenity-label">
+                                                <div class="amenity-icon">
+                                                    <i class="fas fa-plug"></i>
+                                                </div>
+                                                <div class="amenity-content">
+                                                    <div class="amenity-name">Power Outlets</div>
+                                                    <div class="amenity-desc">For laptop/phone charging</div>
+                                                </div>
+                                                <div class="checkmark">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="amenity-option">
+                                            <input type="checkbox" id="can-take-calls" name="can-take-calls">
+                                            <label for="can-take-calls" class="amenity-label">
+                                                <div class="amenity-icon">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </div>
+                                                <div class="amenity-content">
+                                                    <div class="amenity-name">Phone Calls Allowed</div>
+                                                    <div class="amenity-desc">Can take calls inside cafe</div>
+                                                </div>
+                                                <div class="checkmark">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <span class="label-text">Cafe Type</span>
+                                        </label>
+                                        <div class="radio-group">
+                                            <div class="radio-option">
+                                                <input type="radio" id="type-chai" name="cafe-type" value="chai" checked>
+                                                <label for="type-chai">Chai Cafe</label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="type-coffee" name="cafe-type" value="coffee">
+                                                <label for="type-coffee">Coffee Shop</label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="type-both" name="cafe-type" value="both">
+                                                <label for="type-both">Both</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3 class="form-section-title">
+                                        <i class="fas fa-eye"></i>
+                                        Cafe Preview
+                                    </h3>
+
+                                    <div class="preview-card">
+                                        <div class="preview-image">
+                                            <img src="https://t3.ftcdn.net/jpg/02/69/01/66/360_F_269016655_I1w1sr0w5xqR4M6uaWbKcqEDK6v0zPr8.jpg" alt="Cafe preview" id="preview-img">
+                                            <div class="preview-type-badge">Chai Cafe</div>
+                                        </div>
+                                        <div class="preview-content">
+                                            <h4 id="preview-name">Cafe Name</h4>
+                                            <div class="preview-location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span id="preview-location">Location</span>
+                                            </div>
+                                            <div class="preview-details">
+                                                <div class="preview-detail">
+                                                    <i class="fas fa-chair"></i>
+                                                    <span id="preview-seats">0 seats</span>
+                                                </div>
+                                                <div class="preview-detail">
+                                                    <i class="fas fa-rupee-sign"></i>
+                                                    ₹<span id="preview-price">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="preview-amenities">
+                                                <div class="preview-amenity" data-amenity="wifi">
+                                                    <i class="fas fa-wifi"></i>
+                                                </div>
+                                                <div class="preview-amenity" data-amenity="toilet">
+                                                    <i class="fas fa-restroom"></i>
+                                                </div>
+                                                <div class="preview-amenity" data-amenity="sockets">
+                                                    <i class="fas fa-plug"></i>
+                                                </div>
+                                                <div class="preview-amenity" data-amenity="calls">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="preview-note">This is how your cafe will appear in our directory</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Cafe Listing
+                            </button>
+                            <button type="reset" class="btn btn-secondary" id="reset-form">
+                                <i class="fas fa-redo"></i>
+                                Clear Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Indian Cafes Make Great Workspaces</h2>
+                <p class="section-subtitle">Affordable, accessible, and perfect for the growing remote work culture in India</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3>Affordable</h3>
+                    <p>Cafes in India offer workspace at a fraction of co-working space costs, with chai/coffee starting from ₹50.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Good Connectivity</h3>
+                    <p>Most modern cafes provide free high-speed WiFi, perfect for video calls and online work.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Hours</h3>
+                    <p>Many cafes open early and close late, accommodating different work schedules across time zones.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Power Backup</h3>
+                    <p>With frequent power cuts in some areas, cafes with inverters/generators are ideal workspaces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-mug-hot"></i>
+                        <span>ChaiSpot</span>
+                    </div>
+                    <p class="footer-description">Helping India's remote workers, students, and freelancers find perfect cafe workspaces across the country.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#cafes">Browse Cafes</a></li>
+                        <li><a href="#add-cafe">Add Cafe</a></li>
+                        <li><a href="#">For Cafe Owners</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@chaispot.in</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kolkata, India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 class="footer-title">Stay Updated</h4>
+                    <p>Get weekly updates on new cafes and remote work tips</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-small">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div class="app-badges">
+                        <div class="app-badge">
+                            <i class="fab fa-google-play"></i>
+                            <span>Play Store</span>
+                        </div>
+                        <div class="app-badge">
+                            <i class="fab fa-app-store"></i>
+                            <span>App Store</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChaiSpot. All rights reserved. Made with <i class="fas fa-heart"></i> in India.</p>
+                <div class="footer-flags">
+                    <span class="flag">🇮🇳</span>
+                    <span class="flag-text">Supporting Indian Cafe Culture</span>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.875rem; color: rgba(255,255,255,0.6);">
+                    Design & Developed by <a href="https://wa.me/917001583266" style="color: var(--saffron); text-decoration: none;" target="_blank">Jay Mondal</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
